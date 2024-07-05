@@ -1,5 +1,6 @@
 from typing import Union
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -8,6 +9,18 @@ from langchain_core.prompts import ChatPromptTemplate
 
 app = FastAPI()
 load_dotenv()
+
+origins = [
+  "http://localhost:5173",
+]
+
+app.add_middleware(
+  CORSMiddleware,
+  allow_origins=origins,
+  allow_credentials=True,
+  allow_methods=["GET"],
+  allow_headers=["*"],
+)
 
 @app.get('/')
 def read_root():
