@@ -12,6 +12,7 @@ load_dotenv()
 
 origins = [
   "http://localhost:5173",
+  "https://for-diana-ochre.vercel.app"
 ]
 
 app.add_middleware(
